@@ -36,7 +36,7 @@ app.UseStaticFiles();
 app.UseSwaggerUi3(settings =>
 {
     settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
+    settings.DocumentPath = "/api/swagger.index.html";
 });
 
 app.UseRouting();

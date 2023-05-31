@@ -5,9 +5,7 @@ namespace EventMX.Registration.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<TodoList> TodoLists { get; }
-
-    DbSet<TodoItem> TodoItems { get; }
+   DbSet<EventRegistrationItems> EventRegistrationItems { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

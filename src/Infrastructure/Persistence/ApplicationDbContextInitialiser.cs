@@ -3,6 +3,7 @@ using EventMX.Registration.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace EventMX.Registration.Infrastructure.Persistence;
 
@@ -25,7 +26,7 @@ public class ApplicationDbContextInitialiser
     {
         try
         {
-            if (_context.Database.IsSqlServer())
+            if (_context.Database.IsMySql())
             {
                 await _context.Database.MigrateAsync();
             }
@@ -74,18 +75,15 @@ public class ApplicationDbContextInitialiser
 
         // Default data
         // Seed, if necessary
-        if (!_context.TodoLists.Any())
+       
+        if(!_context.EventRegistrationItems.Any())
         {
-            _context.TodoLists.Add(new TodoList
+            _context.EventRegistrationItems.Add(new EventRegistrationItems
             {
-                Title = "Todo List",
-                Items =
-                {
-                    new TodoItem { Title = "Make a todo list 📃" },
-                    new TodoItem { Title = "Check off the first item ✅" },
-                    new TodoItem { Title = "Realise you've already done two things on the list! 🤯"},
-                    new TodoItem { Title = "Reward yourself with a nice, long nap 🏆" },
-                }
+                Min = 1,
+                Max = 10,
+                Price = 100,
+                Description = "My Description"
             });
 
             await _context.SaveChangesAsync();

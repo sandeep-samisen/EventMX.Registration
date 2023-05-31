@@ -23,8 +23,9 @@ public static class ConfigureServices
             .AddDbContextCheck<ApplicationDbContext>();
 
         services.AddControllersWithViews(options =>
-            options.Filters.Add<ApiExceptionFilterAttribute>())
-                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+            options.Filters.Add<ApiExceptionFilterAttribute>());
+
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
         services.AddRazorPages();
 

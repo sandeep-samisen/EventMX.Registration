@@ -1,8 +1,6 @@
-﻿using EventMX.Registration.Application.TodoLists.Queries.ExportTodos;
-
-namespace EventMX.Registration.Application.Common.Interfaces;
+﻿namespace EventMX.Registration.Application.Common.Interfaces;
 
 public interface ICsvFileBuilder
 {
-    byte[] BuildTodoItemsFile(IEnumerable<TodoItemRecord> records);
+    //   byte[] BuildTodoItemsFile(IEnumerable<TodoItemRecord> records);
 }

@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/EventRegistrationItems/AddEventRegistrationItems": {
+    "/api/EventRegistrationItems": {
       "post": {
         "tags": [
           "EventRegistrationItems"
@@ -37,9 +37,7 @@
             }
           }
         }
-      }
-    },
-    "/api/EventRegistrationItems/GetEventRegistrationItems": {
+      },
       "get": {
         "tags": [
           "EventRegistrationItems"
@@ -69,30 +67,7 @@
             }
           }
         }
-      }
-    },
-    "/api/EventRegistrationItems/GetAllEventRegistrationItems": {
-      "get": {
-        "tags": [
-          "EventRegistrationItems"
-        ],
-        "operationId": "EventRegistrationItems_GetAllEventRegistrationItems",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/EventRegistrationItems/UpdateEventRegistrationItems": {
+      },
       "put": {
         "tags": [
           "EventRegistrationItems"
@@ -123,9 +98,7 @@
             }
           }
         }
-      }
-    },
-    "/api/EventRegistrationItems/DeleteEventRegistrationItems": {
+      },
       "delete": {
         "tags": [
           "EventRegistrationItems"
@@ -142,6 +115,27 @@
             "x-position": 1
           }
         ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EventRegistrationItems/List": {
+      "get": {
+        "tags": [
+          "EventRegistrationItems"
+        ],
+        "operationId": "EventRegistrationItems_GetAllEventRegistrationItems",
         "responses": {
           "200": {
             "description": "",

@@ -31,12 +31,21 @@ internal class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 .Remove<ICurrentUserService>()
                 .AddTransient(provider => Mock.Of<ICurrentUserService>(s =>
                     s.UserId == GetCurrentUserId()));
-
-            services
-                .Remove<DbContextOptions<ApplicationDbContext>>()
-                .AddDbContext<ApplicationDbContext>((sp, options) =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-                        builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            if (builder.Configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services
+                   .Remove<DbContextOptions<ApplicationDbContext>>()
+                   .AddDbContext<ApplicationDbContext>((sp, options) =>
+                       options.UseInMemoryDatabase("EventMX.RegistrationDb"));
+            }
+            else
+            {
+                services
+                    .Remove<DbContextOptions<ApplicationDbContext>>()
+                    .AddDbContext<ApplicationDbContext>((sp, options) =>
+                        options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"),
+                            builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            }
         });
     }
 }
